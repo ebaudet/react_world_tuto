@@ -1,3 +1,5 @@
+import Home from "./pages/Home";
+
 function App() {
   return (
     <div className="App">
@@ -5,6 +7,7 @@ function App() {
         <h1>
           Hello World !
         </h1>
+        <Home/>
       </header>
     </div>
   );
