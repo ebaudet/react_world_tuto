@@ -1,12 +1,12 @@
 import React from "react";
 
-const Cards = (props) => {
+const Cards = ({country}) => {
   return (
     <li className="card">
-        <img src={props.country.flags.png} alt={"drapeau de " + props.country.translations.fra.common} />
+        <img src={country.flags.png} alt={"drapeau de " + country.translations.fra.common} />
       <div className="infos">
-        <h2>{props.country.translations.fra.common}</h2>
-        {props.country.population} habitants
+        <h2>{country.translations.fra.common}</h2>
+        {country.population} habitants
       </div>
     </li>
   );
