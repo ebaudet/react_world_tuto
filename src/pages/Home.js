@@ -1,10 +1,13 @@
+import Navigation from "../components/Navigation";
 
-const Home = () => { // similar to function Home()
-    return (
-        <div className="home">
-            <h1>Accueil</h1>
-        </div>
-    )
-}
+// similar to function Home()
+const Home = () => {
+  return (
+    <div className="home">
+      <Navigation />
+      <h1>Accueil</h1>
+    </div>
+  );
+};
 
 export default Home;
