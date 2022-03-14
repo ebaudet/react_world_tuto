@@ -5,7 +5,14 @@ import Cards from "./Cards";
 const Countries = () => {
   const [data, setData] = useState([]);
   const [rangeValue, setRangeValue] = useState(36);
-  const continents = ["Africa", "America", "Asia", "Europe", "Oceania", "Antarctica"];
+  const continents = [
+    "Africa",
+    "America",
+    "Asia",
+    "Europe",
+    "Oceania",
+    "Antarctica",
+  ];
   const [selectedContinent, setSelectedContinent] = useState("");
 
   // useEffect is called when the component is mounted
@@ -18,13 +25,30 @@ const Countries = () => {
   return (
     <div className="countries">
       <h1>
-        Pays ({Math.min(rangeValue, data.filter((country) => country.continents[0].includes(selectedContinent)).length)}/{data.filter((country) => country.continents[0].includes(selectedContinent)).length})
+        Pays (
+        {Math.min(
+          rangeValue,
+          data.filter((country) =>
+            country.continents[0].includes(selectedContinent)
+          ).length
+        )}
+        /
+        {
+          data.filter((country) =>
+            country.continents[0].includes(selectedContinent)
+          ).length
+        }
+        )
       </h1>
       <ul className="radio-container">
         <input
           type="range"
           min="1"
-          max={data.filter((country) => country.continents[0].includes(selectedContinent)).length}
+          max={
+            data.filter((country) =>
+              country.continents[0].includes(selectedContinent)
+            ).length
+          }
           value={rangeValue}
           onChange={(e) => setRangeValue(e.target.value)}
         />
@@ -34,19 +58,27 @@ const Countries = () => {
               type="radio"
               id={continent}
               name="continentRadio"
+              checked={continent === selectedContinent}
               onChange={(e) => setSelectedContinent(e.target.id)}
             />
             <label htmlFor={continent}>{continent}</label>
           </li>
         ))}
       </ul>
+      {selectedContinent && (
+        <button onClick={() => setSelectedContinent("")}>
+          Annuler la selection
+        </button>
+      )}
       <ul>
         {data
-          .filter((country) => country.continents[0].includes(selectedContinent))
+          .filter((country) =>
+            country.continents[0].includes(selectedContinent)
+          )
           .sort((a, b) => b.population - a.population)
           .slice(0, rangeValue)
           .map((country, index) => (
-            <Cards key={index} country={country} id={index + 1} />
+            <Cards key={index} country={country} n={index + 1} />
           ))}
       </ul>
     </div>
