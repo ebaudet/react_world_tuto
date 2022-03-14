@@ -3,10 +3,11 @@ import React from "react";
 const Cards = ({country}) => {
   return (
     <li className="card">
-        <img src={country.flags.png} alt={"drapeau de " + country.translations.fra.common} />
+        <img src={country.flags.svg} alt={"drapeau de " + country.translations.fra.common} />
       <div className="infos">
         <h2>{country.translations.fra.common}</h2>
-        {country.population} habitants
+        <h4>{country.capital}</h4>
+        <p>Pop. {country.population.toLocaleString()}</p>
       </div>
     </li>
   );
