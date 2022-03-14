@@ -19,6 +19,13 @@
     transform: scaleY(1);
   }
 
+  a {
+    color: #61dafb;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   .infos {
     position: absolute;
     top: 0;

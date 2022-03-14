@@ -7,7 +7,7 @@ const Cards = ({country, n}) => {
       <div className="infos">
         <h2>{country.translations.fra.common}</h2>
         <h4>{country.capital}</h4>
-        <p>Pop. {country.population.toLocaleString()} ({n}ème)</p>
+        <p>Pop. {country.population.toLocaleString()} ({n}ème) <a href={"https://fr.wikipedia.org/wiki/"+country.translations.fra.common} target="_blank">wiki</a></p>
       </div>
     </li>
   );
