@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Cards from "./Cards";
 
 const Countries = () => {
   const [data, setData] = useState([]);
@@ -18,9 +19,7 @@ const Countries = () => {
       {hello}
       <ul>
         {data.map((country, index) => (
-          <li key={index}>
-            {country.translations.fra.common}
-          </li>
+          <Cards key={index} country={country} />
         ))}
       </ul>
     </div>
