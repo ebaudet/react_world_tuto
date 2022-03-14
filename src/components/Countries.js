@@ -43,9 +43,10 @@ const Countries = () => {
       <ul>
         {data
           .filter((country) => country.continents[0].includes(selectedContinent))
+          .sort((a, b) => b.population - a.population)
           .slice(0, rangeValue)
           .map((country, index) => (
-            <Cards key={index} country={country} />
+            <Cards key={index} country={country} id={index + 1} />
           ))}
       </ul>
     </div>
