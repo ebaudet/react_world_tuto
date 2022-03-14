@@ -5,6 +5,8 @@ import Cards from "./Cards";
 const Countries = () => {
   const [data, setData] = useState([]);
   const [rangeValue, setRangeValue] = useState(36);
+  const continents = ["Africa", "America", "Asia", "Europe", "Oceania", "Antarctica"];
+  const [selectedContinent, setSelectedContinent] = useState("");
 
   // useEffect is called when the component is mounted
   useEffect(() => {
@@ -15,20 +17,36 @@ const Countries = () => {
 
   return (
     <div className="countries">
-      <h1>Pays ({data.length})</h1>
+      <h1>
+        Pays ({Math.min(rangeValue, data.filter((country) => country.continents[0].includes(selectedContinent)).length)}/{data.filter((country) => country.continents[0].includes(selectedContinent)).length})
+      </h1>
       <ul className="radio-container">
         <input
           type="range"
           min="1"
-          max={data.length}
+          max={data.filter((country) => country.continents[0].includes(selectedContinent)).length}
           value={rangeValue}
           onChange={(e) => setRangeValue(e.target.value)}
         />
+        {continents.map((continent) => (
+          <li>
+            <input
+              type="radio"
+              id={continent}
+              name="continentRadio"
+              onChange={(e) => setSelectedContinent(e.target.id)}
+            />
+            <label htmlFor={continent}>{continent}</label>
+          </li>
+        ))}
       </ul>
       <ul>
-        {data.slice(0, rangeValue).map((country, index) => (
-          <Cards key={index} country={country} />
-        ))}
+        {data
+          .filter((country) => country.continents[0].includes(selectedContinent))
+          .slice(0, rangeValue)
+          .map((country, index) => (
+            <Cards key={index} country={country} />
+          ))}
       </ul>
     </div>
   );
