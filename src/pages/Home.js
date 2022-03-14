@@ -1,3 +1,4 @@
+import Countries from "../components/Countries";
 import Logo from "../components/Logo";
 import Navigation from "../components/Navigation";
 
@@ -7,9 +8,7 @@ const Home = () => {
     <>
       <Logo />
       <Navigation />
-      <div className="home">
-        <h1>Home</h1>
-      </div>
+      <Countries />
     </>
   );
 };
