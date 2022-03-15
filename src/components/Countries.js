@@ -14,6 +14,8 @@ const Countries = () => {
     "Antarctica",
   ];
   const [selectedContinent, setSelectedContinent] = useState("");
+  const selections = ["population", "area", "density"];
+  const [selectedSelection, setSelectedSelection] = useState("population");
 
   // useEffect is called when the component is mounted
   useEffect(() => {
@@ -40,6 +42,18 @@ const Countries = () => {
         }
         )
       </h1>
+      {selections.map((selection) => (
+        <li>
+          <input
+          type="radio"
+          id={selection}
+          name="selectionRadio"
+          checked={selection === selectedSelection}
+          onChange={(e) => setSelectedSelection(e.target.id)}
+          />
+          <label htmlFor={selection}>{selection}</label>
+        </li>
+      ))}
       <ul className="radio-container">
         <input
           type="range"
@@ -75,10 +89,10 @@ const Countries = () => {
           .filter((country) =>
             country.continents[0].includes(selectedContinent)
           )
-          .sort((a, b) => b.population - a.population)
+          .sort((a, b) => (selectedSelection == "population" && b.population - a.population) || (selectedSelection == "area" && b.area - a.area) || (selectedSelection == "density" && b.population / b.area - a.population / a.area))
           .slice(0, rangeValue)
           .map((country, index) => (
-            <Cards key={index} country={country} n={index + 1} />
+            <Cards key={index} country={country} n={index + 1} selection={selectedSelection} />
           ))}
       </ul>
     </div>
