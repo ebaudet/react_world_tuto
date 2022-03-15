@@ -42,8 +42,8 @@ const Countries = () => {
         }
         )
       </h1>
-      {selections.map((selection) => (
-        <li>
+      {selections.map((selection, index) => (
+        <li key={index}>
           <input
           type="radio"
           id={selection}
@@ -66,8 +66,8 @@ const Countries = () => {
           value={rangeValue}
           onChange={(e) => setRangeValue(e.target.value)}
         />
-        {continents.map((continent) => (
-          <li>
+        {continents.map((continent, index) => (
+          <li key={index}>
             <input
               type="radio"
               id={continent}
@@ -89,7 +89,7 @@ const Countries = () => {
           .filter((country) =>
             country.continents[0].includes(selectedContinent)
           )
-          .sort((a, b) => (selectedSelection == "population" && b.population - a.population) || (selectedSelection == "area" && b.area - a.area) || (selectedSelection == "density" && b.population / b.area - a.population / a.area))
+          .sort((a, b) => (selectedSelection === "population" && b.population - a.population) || (selectedSelection === "area" && b.area - a.area) || (selectedSelection === "density" && b.population / b.area - a.population / a.area))
           .slice(0, rangeValue)
           .map((country, index) => (
             <Cards key={index} country={country} n={index + 1} selection={selectedSelection} />
